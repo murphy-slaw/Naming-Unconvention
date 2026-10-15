@@ -1,6 +1,6 @@
 package qinomed.namingunconvention;
 
-import fuzs.forgeconfigapiport.fabric.api.forge.v4.ForgeConfigRegistry;
+import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.NeoForgeConfigRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -15,7 +15,7 @@ public class NamingUnconvention implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        ForgeConfigRegistry.INSTANCE.register(MODID, ModConfig.Type.CLIENT,Config.SPEC);
+        NeoForgeConfigRegistry.INSTANCE.register(MODID, ModConfig.Type.CLIENT,Config.SPEC);
         ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener((IdentifiableResourceReloadListener) RANDOM_NAME_GENERATOR);
     }
 
