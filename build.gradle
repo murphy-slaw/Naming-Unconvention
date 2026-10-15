@@ -3,6 +3,9 @@ plugins {
     id 'maven-publish'
 }
 
+version = project.mod_version
+group   = project.group
+
 repositories {
     maven {
         name = 'ParchmentMC'
