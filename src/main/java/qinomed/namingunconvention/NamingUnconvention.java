@@ -1,12 +1,12 @@
 package qinomed.namingunconvention;
 
-import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
+import fuzs.forgeconfigapiport.fabric.api.forge.v4.ForgeConfigRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
-import net.minecraftforge.fml.config.ModConfig;
+import net.neoforged.fml.config.ModConfig;
 
 public class NamingUnconvention implements ClientModInitializer {
 
@@ -15,14 +15,14 @@ public class NamingUnconvention implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        ForgeConfigRegistry.INSTANCE.register(MODID, ModConfig.Type.CLIENT, Config.SPEC);
+        ForgeConfigRegistry.INSTANCE.register(MODID, ModConfig.Type.CLIENT,Config.SPEC);
         ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener((IdentifiableResourceReloadListener) RANDOM_NAME_GENERATOR);
     }
 
     private static class RandomNameFabric extends RandomNameGenerator implements IdentifiableResourceReloadListener {
         @Override
         public ResourceLocation getFabricId() {
-            return new ResourceLocation(MODID, "resources");
+            return ResourceLocation.fromNamespaceAndPath(MODID, "resources");
         }
     }
 }
